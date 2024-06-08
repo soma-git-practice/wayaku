@@ -1,5 +1,7 @@
 module Wayaku
-  def self.hoge
-    puts 'hello'
+  autoload :Base, 'wayaku/base'
+
+  def self.extended(base)
+    base.include Wayaku::Base
   end
 end

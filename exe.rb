@@ -19,6 +19,5 @@ class User < ActiveRecord::Base
   enumerize :gender, in: [:man, :woman]
   enumerize :status, in: [:sleeping, :working, :mystery]
 
-  # extend Wayaku
+  extend Wayaku
 end
-binding.pry
