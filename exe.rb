@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
   extend Enumerize
   enumerize :gender, in: [:man, :woman]
   enumerize :status, in: [:sleeping, :working, :mystery]
-
-  extend Wayaku
 end
+
+User.wayaku
