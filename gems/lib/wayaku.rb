@@ -3,8 +3,10 @@ module Wayaku
   autoload :Search, 'wayaku/search'
   autoload :List,   'wayaku/list'
 
+  include Search
+  include List
+
   def wayaku(value = nil)
-    extend value.present? ? Search : List
-    puts run(value)
+    puts value.present? ? search(value) : list
   end
 end
