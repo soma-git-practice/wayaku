@@ -2,7 +2,7 @@ module Wayaku
   module List2
     protected
     def list
-      group = nested_grouping(data)
+      group = transform(nested_locale_data)
       group.each do |item|
         indent = "\s\s" * item[:count]
         puts "\r\n" if item[:count] == 2
@@ -13,25 +13,11 @@ module Wayaku
     end
 
     private
-    def translation
+    def nested_locale_data
       I18n.config.backend.translations[:ja]
     end
 
-    def nested_grouping(argumant, count = 1)
-      values = []
-      argumant.each do |key, value|
-        options = { count: count, key: key }
-        if value.is_a?(Array)
-          values << { **options, value: value[0] }
-          values = values + nested_grouping(value[1], count + 1)
-        else
-          values << { **options, value: value }
-        end
-      end
-      values
-    end
-
-    def data
+    def nested_locale_data
       {
         'user' => [
           'ユーザー',
@@ -56,6 +42,20 @@ module Wayaku
           }
         ]
       }
+    end
+
+    def transform(argumant, count = 1)
+      values = []
+      argumant.each do |key, value|
+        options = { count: count, key: key }
+        if value.is_a?(Array)
+          values << { **options, value: value[0] }
+          values = values + create_data(value[1], count + 1)
+        else
+          values << { **options, value: value }
+        end
+      end
+      values
     end
   end
 end
