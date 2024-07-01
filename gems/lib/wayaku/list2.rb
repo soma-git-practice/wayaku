@@ -2,7 +2,15 @@ module Wayaku
   module List2
     protected
     def list
-      binding.pry
+      puts "\r\n"
+      group = nested_hash_group(create_data)
+      group.each do |item|
+        indent = "\s\s" * item[:count]
+        puts "\r\n" if item[:count] == 2
+        puts indent + item[:key]
+        puts indent + item[:value]
+      end
+      nil
     end
 
     private
@@ -10,7 +18,22 @@ module Wayaku
       I18n.config.backend.translations[:ja]
     end
 
-    def risou
+    def nested_hash_group(argumant, count = 1)
+      values = []
+      argumant.each do |key, value|
+        key = key.to_s
+        options = { count: count, key: key }
+        if value.is_a?(Array)
+          values << { **options, value: value[0].to_s }
+          values = values + nested_hash_group(value[1], count + 1)
+        else
+          values << { **options, value: value.to_s }
+        end
+      end
+      values
+    end
+
+    def create_data
       {
         'user' => [
           'ユーザー',
