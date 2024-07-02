@@ -10,11 +10,6 @@ ja:
         gender: 性別
         status: ステータス
         email: メール
-      todo:
-        id: ID
-        title: タイトル
-        text: テキスト
-        tag: タグ
 
   enumerize:
     user:
@@ -25,7 +20,3 @@ ja:
         sleeping: 寝ている
         working: 働いている
         mystery: 謎に包まれている
-    todo:
-      status:
-        stop: 未着手
-        start: 着手
