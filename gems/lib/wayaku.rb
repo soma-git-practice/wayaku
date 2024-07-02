@@ -1,8 +1,10 @@
 module Wayaku
   extend_object ActiveRecord::Base
+  autoload :Base,   'wayaku/base'
   autoload :Search, 'wayaku/search'
   autoload :List,   'wayaku/list'
 
+  include Base
   include Search
   include List
 
