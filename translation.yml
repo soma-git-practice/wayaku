@@ -2,7 +2,6 @@ ja:
   activerecord:
     models:
       user: ユーザー
-      todo: TODO
     attributes:
       user:
         id: ID
